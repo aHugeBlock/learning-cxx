@@ -1,6 +1,6 @@
 #include "../exercise.h"
-
-constexpr unsigned long long fibonacci(int i) {
+// 答：问题是递归深度超出了编译器的 constexpr 限制，导致编译失败。让fibonacci的计算发生在运算时而不是编译时
+constexpr unsigned long long fibonacci(int i) {//此处constepr也去掉
     switch (i) {
         case 0:
             return 0;
@@ -18,8 +18,9 @@ int main(int argc, char **argv) {
 
     // TODO: 观察错误信息，修改一处，使代码编译运行
     // PS: 编译运行，但是不一定能算出结果……
-    constexpr auto ANS_N = 90;
-    constexpr auto ANS = fibonacci(ANS_N);
+    constexpr auto ANS_N = 40; //原来是90
+    //constexpr auto ANS = fibonacci(ANS_N); //改之前
+    auto ANS = fibonacci(ANS_N); //改之后，保留90的输入能跑但会很慢
     std::cout << "fibonacci(" << ANS_N << ") = " << ANS << std::endl;
 
     return 0;

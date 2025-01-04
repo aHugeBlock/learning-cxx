@@ -3,14 +3,26 @@
 // READ: Trivial type <https://learn.microsoft.com/zh-cn/cpp/cpp/trivial-standard-layout-and-pod-types?view=msvc-170>
 
 struct FibonacciCache {
-    unsigned long long cache[16];
-    int cached;
+    unsigned long long cache[16]{0,1};
+    int cached=2;
+    
+    // 重载 [] 运算符，使其能够访问 `cache` 数组
+    unsigned long long &operator[](int index) {
+        return cache[index];
+    }
+    /*
+    // const 重载版本，支持在常量上下文中使用
+    const unsigned long long &operator[](int index) const {
+        return cache[index];
+    }
+    */
 };
 
 // TODO: 实现正确的缓存优化斐波那契计算
 static unsigned long long fibonacci(FibonacciCache &cache, int i) {
-    for (; false; ++cached) {
-        cache[cached] = cache[cached - 1] + cache[cached - 2];
+    //int cached = cache.cached;
+    for (; cache.cached <= i; ++cache.cached) {
+        cache[cache.cached] = cache[cache.cached - 1] + cache[cache.cached - 2];
     }
     return cache.cache[i];
 }
