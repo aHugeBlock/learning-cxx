@@ -18,7 +18,7 @@ public:
         for(int i = 0; i < other.cached; i++){
             cache[i] = other.cache[i];
         }
-    }
+    }//
 
     // TODO: 实现析构器，释放缓存空间
     ~DynFibonacci(){
