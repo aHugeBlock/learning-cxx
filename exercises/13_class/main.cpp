@@ -14,16 +14,22 @@ class Fibonacci {
 
 public:
     // TODO: 实现构造器
-    // Fibonacci()
+    Fibonacci();
 
     // TODO: 实现正确的缓存优化斐波那契计算
     size_t get(int i) {
-        for (; false; ++cached) {
+        for (; cached <= i; ++cached) {
             cache[cached] = cache[cached - 1] + cache[cached - 2];
         }
         return cache[i];
     }
 };
+Fibonacci::Fibonacci(){
+    cache[0] = 0;
+    cache[1] = 1;
+    cached = 2;
+
+}
 
 int main(int argc, char **argv) {
     // 现在类型拥有无参构造器，声明时会直接调用。

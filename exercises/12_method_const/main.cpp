@@ -5,7 +5,9 @@
 struct Fibonacci {
     int numbers[11];
     // TODO: 修改方法签名和实现，使测试通过
-    int get(int i) {
+    int get(int i) const { //constexpr 的对象只能调用 const 成员函数，
+    //因此需要修改方法签名，使其成为一个 const 成员函数。
+        return numbers[i]; 
     }
 };
 
